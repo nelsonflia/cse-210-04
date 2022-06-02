@@ -67,7 +67,7 @@ def main():
 
 # create the rocks
 
-    text = "o"
+    text = "o"    
     x = random.randint(1, COLS - 1)
     y = random.randint(1, ROWS/2)
     position = Point(x, y)
