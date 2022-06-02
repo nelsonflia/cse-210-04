@@ -1,3 +1,4 @@
+import pyray
 from point import Point
 import random
 from artifact import Artifact
@@ -56,6 +57,8 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
+        score = 0
+        pyray.draw_text(f'SCORE: {score}', 5,5,30,(255,255,255)) 
         player = cast.get_first_actor("players")
         gems = cast.get_actors("gems")
         rocks = cast.get_actors("rocks")
@@ -68,10 +71,11 @@ class Director:
             gem.set_velocity(Point(0,1))
             gem.move_next(max_x, max_y)
             
-            if len(gems) < 40:
+            if len(gems) < 10:
                 text = "*"
-                x = random.randint(0, 59)
-                y = random.randint(0, 39)
+                
+                x = random.randint(2, 59)
+                y = random.randint(5, 39)
                 position = Point(x, y)
                 position = position.scale(15)
 
@@ -79,22 +83,26 @@ class Director:
                 g = random.randint(0, 255)
                 b = random.randint(0, 255)
                 color = Color(r, g, b)
-                
+            
                 new_gem = Artifact()
                 new_gem.set_text(text)
-                new_gem.set_font_size(15)
+                new_gem.set_font_size(30)
                 new_gem.set_color(color)
                 new_gem.set_position(position)
                 cast.add_actor("gems", new_gem)
-            if player.get_position().equals(gem.get_position()):
-                cast.remove_actor("gems", gem)
+        if player.get_position().equals(gem.get_position()):
+            cast.remove_actor("gems", gem)
+            
+        score += score
+        
         
         for rock in rocks:
             rock.set_velocity(Point(0,1))
             rock.move_next(max_x, max_y)
             
-            if len(rocks) < 40:
-                text = "o"
+            if len(rocks) < 10:
+                text = "o" 
+                      
                 x = random.randint(1, 59)
                 y = random.randint(1, 20)
                 position = Point(x, y)
@@ -107,12 +115,12 @@ class Director:
                 
                 new_rock = Artifact()
                 new_rock.set_text(text)
-                new_rock.set_font_size(15)
+                new_rock.set_font_size(30)
                 new_rock.set_color(color)
                 new_rock.set_position(position)
                 cast.add_actor("rocks", new_rock)
-            if player.get_position().equals(rock.get_position()):
-                cast.remove_actor("rocks", rock)
+        if player.get_position().equals(rock.get_position()):
+            cast.remove_actor("rocks", rock)
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.

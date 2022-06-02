@@ -15,11 +15,11 @@ from color import Color
 from point import Point
 
 
-FRAME_RATE = 12
+FRAME_RATE = 15
 MAX_X = 900
 MAX_Y = 600
 CELL_SIZE = 15
-FONT_SIZE = 15
+FONT_SIZE = 30
 COLS = 60
 ROWS = 40
 CAPTION = "Greed"
@@ -45,47 +45,48 @@ def main():
     player.set_position(position)
     cast.add_actor("players", player)
     
-    # create the gems
-  
+    # create the gems  
     text = "*"
-    x = random.randint(0, COLS - 1)
-    y = random.randint(0, ROWS - 1)
-    position = Point(x, y)
-    position = position.scale(CELL_SIZE)
+    for i in range(0, 10):
+        x = random.randint(0, COLS - 1)
+        y = random.randint(0, ROWS - 1)
+        position = Point(x, y)
+        position = position.scale(CELL_SIZE)
 
-    r = random.randint(0, 255)
-    g = random.randint(0, 255)
-    b = random.randint(0, 255)
-    color = Color(r, g, b)
-    
-    gem = Artifact()
-    gem.set_text(text)
-    gem.set_font_size(FONT_SIZE)
-    gem.set_color(color)
-    gem.set_position(position)
-    cast.add_actor("gems", gem)
-
-# create the rocks
-
+        r = random.randint(0, 255)
+        g = random.randint(0, 255)
+        b = random.randint(0, 255)
+        color = Color(r, g, b)
+        
+        gem = Artifact()
+        gem.set_text(text)
+        gem.set_font_size(FONT_SIZE)
+        gem.set_color(color)
+        gem.set_position(position)
+        cast.add_actor("gems", gem)
+        
+    #create the rocks    
     text = "o"
-    x = random.randint(1, COLS - 1)
-    y = random.randint(1, ROWS/2)
-    position = Point(x, y)
-    position = position.scale(CELL_SIZE)
+    for i in range(10):
+        x = random.randint(0, COLS - 1)
+        y = random.randint(0, ROWS - 1)
+        position = Point(x, y)
+        position = position.scale(CELL_SIZE)
 
-    r = random.randint(0, 255)
-    g = random.randint(0, 255)
-    b = random.randint(0, 255)
-    color = Color(r, g, b)
+        r = random.randint(0, 255)
+        g = random.randint(0, 255)
+        b = random.randint(0, 255)
+        color = Color(r, g, b)
+        
+        rock = Artifact()
+        rock.set_text(text)
+        rock.set_font_size(FONT_SIZE)
+        rock.set_color(color)
+        rock.set_position(position)
+        cast.add_actor("rocks", rock)   
+        
     
-    rock = Artifact()
-    rock.set_text(text)
-    rock.set_font_size(FONT_SIZE)
-    rock.set_color(color)
-    rock.set_position(position)
-    cast.add_actor("rocks", rock)
-    
-    # start the game
+    #start the game
 
     keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
