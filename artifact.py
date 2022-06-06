@@ -2,30 +2,29 @@ from actor import Actor
 
 
 class Artifact(Actor):
-    """
-    An item of cultural or historical interest. 
+    """An item that can be caught.
     
-    The responsibility of an Artifact is to provide a message about itself.
+    The responsibility of an Artifact is to provide a score when caught.
 
     Attributes:
-        _message (string): A short description about the artifact.
+        _score (int): A score that adds or subtracts.
     """
     def __init__(self):
         super().__init__()
-        self._message = ""
+        self._score = ""
         
-    def get_message(self):
+    def get_score(self):
         """Gets the artifact's message.
         
         Returns:
             string: The message.
         """
-        return self._message
+        return self._score
     
-    def set_message(self, message):
+    def set_score(self, score):
         """Updates the message to the given one.
         
         Args:
             message (string): The given message.
         """
-        self._message = message
+        self._score = score

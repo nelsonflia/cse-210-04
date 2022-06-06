@@ -1,6 +1,10 @@
 # cse-210-04
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 # Robot Finds Kitten
+=======
+# Catch gems not rocks
+>>>>>>> Stashed changes
 
 =======
 # Greed
@@ -25,6 +29,7 @@ project folder. Select the main module inside the hunter folder and click the "r
 ---
 The project files and folders are organized as follows:
 ```
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 root                    (project root folder)
 +-- rfk                 (source code for game
@@ -46,6 +51,20 @@ root                     (project root folder)
   +-- video_service      (specific game classes)
 
 >>>>>>> bbf9c140cb463bfd0655a5df655581c8303a0fc0
+=======
+root                      (project root folder)
++-- cse-210-04            (source code for game
+  +-- actor.py            (specific game classes)
+  +-- artifact.py         (specific game classes)
+  +-- cast.py             (specific game classes)
+  +-- color.py            (specific game classes)
+  +-- director.py         (specific game classes)
+  +-- keyboard_service.py (specific game classes)
+  +-- point.py            (specific game classes)
+  +-- video_service.py    (specific game classes)
+  +-- main.py             (entry point for program)
++-- README.md             (general info)
+>>>>>>> Stashed changes
 ```
 
 ## Required Technologies
@@ -55,6 +74,7 @@ root                     (project root folder)
 
 ## Authors
 ---
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 Nelson
 Camila
@@ -65,3 +85,10 @@ Wendy
 
 Required Software: Visual Studio Code GitHub Python
 >>>>>>> bbf9c140cb463bfd0655a5df655581c8303a0fc0
+=======
+Camila Melo-mel19009@byui.edu
+    Nelson Tomas Familia Arroyo-fam16002@byui.edu
+    Wendy Fellows-fellowswendylynn@gmail.com
+    Koko Mouhamed Jean Patrick-mouhamedkoko996@gmail.com
+  
+>>>>>>> Stashed changes
