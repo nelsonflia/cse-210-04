@@ -24,6 +24,8 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
+        self.score = 300
+        self.total_score = 0 
         
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -57,8 +59,8 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
-        score = 0
-        pyray.draw_text(f'SCORE: {score}', 5,5,30,(255,255,255)) 
+        self.score = 300
+        pyray.draw_text(f'SCORE: {self.score}', 5,5,30,(255,255,255)) 
         player = cast.get_first_actor("players")
         gems = cast.get_actors("gems")
         rocks = cast.get_actors("rocks")
@@ -70,7 +72,6 @@ class Director:
         for gem in gems:
             gem.set_velocity(Point(0,1))
             gem.move_next(max_x, max_y)
-            
             if len(gems) < 10:
                 text = "*"
                 
@@ -90,12 +91,13 @@ class Director:
                 new_gem.set_color(color)
                 new_gem.set_position(position)
                 cast.add_actor("gems", new_gem)
-        if player.get_position().equals(gem.get_position()):
-            cast.remove_actor("gems", gem)
-            
-        score += score
-        
-        
+            if player.get_position().equals(gem.get_position()):
+                cast.remove_actor("gems", gem)
+                while cast.remove_actor('gem', gem):
+                    self.total_score = self.score + 1
+                print(self.total_score)   
+                break 
+                
         for rock in rocks:
             rock.set_velocity(Point(0,1))
             rock.move_next(max_x, max_y)
@@ -119,8 +121,10 @@ class Director:
                 new_rock.set_color(color)
                 new_rock.set_position(position)
                 cast.add_actor("rocks", new_rock)
-        if player.get_position().equals(rock.get_position()):
-            cast.remove_actor("rocks", rock)
+            if player.get_position().equals(rock.get_position()):
+                cast.remove_actor("rocks", rock)
+                
+        
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.

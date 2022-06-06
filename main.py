@@ -1,6 +1,7 @@
 
 import os
 import random
+from textwrap import fill
 
 from actor import Actor
 from artifact import Artifact
@@ -47,9 +48,9 @@ def main():
     
     # create the gems  
     text = "*"
-    for i in range(0, 10):
-        x = random.randint(0, COLS - 1)
-        y = random.randint(0, ROWS - 1)
+    for i in range(10):
+        x = random.randint(4, 60)
+        y = random.randint(4, 60)
         position = Point(x, y)
         position = position.scale(CELL_SIZE)
 
@@ -68,15 +69,15 @@ def main():
     #create the rocks    
     text = "o"
     for i in range(10):
-        x = random.randint(0, COLS - 1)
-        y = random.randint(0, ROWS - 1)
+        x = random.randint(0, 850)
+        y = random.randint(4, 60)
         position = Point(x, y)
         position = position.scale(CELL_SIZE)
 
         r = random.randint(0, 255)
         g = random.randint(0, 255)
         b = random.randint(0, 255)
-        color = Color(r, g, b)
+        color = Color(r, g, b,)
         
         rock = Artifact()
         rock.set_text(text)

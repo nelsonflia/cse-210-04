@@ -30,7 +30,7 @@ class VideoService:
         
         pyray.begin_drawing()
         pyray.clear_background(pyray.BLACK)
-          
+        
         if self._debug == True:
             self._draw_grid()
         
@@ -41,7 +41,7 @@ class VideoService:
         Args:
             actor (Actor): The actor to draw.
         """ 
-        score = 0
+        
         text = actor.get_text()
         x = actor.get_position().get_x()
         y = actor.get_position().get_y()
@@ -106,6 +106,7 @@ class VideoService:
         """
         pyray.init_window(self._width, self._height, self._caption)
         pyray.set_target_fps(self._frame_rate)
+        
 
     def _draw_grid(self):
         """Draws a grid on the screen."""
@@ -113,5 +114,5 @@ class VideoService:
             pyray.draw_line(0, y, self._width, y, pyray.GRAY)
         for x in range(0, self._width, self._cell_size):
             pyray.draw_line(x, 0, x, self._height, pyray.GRAY)
-            
+          
             
