@@ -1,3 +1,5 @@
+
+
 import pyray
 from point import Point
 import random
@@ -24,8 +26,9 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
-        self.score = 300
+        self.score = 0
         self.total_score = 0 
+        
         
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -48,6 +51,7 @@ class Director:
             cast (Cast): The cast of actors.
         """
         player = cast.get_first_actor("players")
+        
         velocity = self._keyboard_service.get_direction()
         if velocity._y == 0:        
             player.set_velocity(velocity)
@@ -59,8 +63,9 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
-        self.score = 300
-        pyray.draw_text(f'SCORE: {self.score}', 5,5,30,(255,255,255)) 
+                
+        pyray.draw_text(f'SCORE: {self.total_score}', 5,5,30,(255,180,80)) 
+        
         player = cast.get_first_actor("players")
         gems = cast.get_actors("gems")
         rocks = cast.get_actors("rocks")
@@ -75,8 +80,8 @@ class Director:
             if len(gems) < 10:
                 text = "*"
                 
-                x = random.randint(2, 59)
-                y = random.randint(5, 39)
+                x = random.randint(0, 59)
+                y = random.randint(0, 39)
                 position = Point(x, y)
                 position = position.scale(15)
 
@@ -91,12 +96,10 @@ class Director:
                 new_gem.set_color(color)
                 new_gem.set_position(position)
                 cast.add_actor("gems", new_gem)
+                
             if player.get_position().equals(gem.get_position()):
                 cast.remove_actor("gems", gem)
-                while cast.remove_actor('gem', gem):
-                    self.total_score = self.score + 1
-                print(self.total_score)   
-                break 
+                self.total_score = self.total_score +1 
                 
         for rock in rocks:
             rock.set_velocity(Point(0,1))
@@ -123,8 +126,9 @@ class Director:
                 cast.add_actor("rocks", new_rock)
             if player.get_position().equals(rock.get_position()):
                 cast.remove_actor("rocks", rock)
+                self.total_score = self.total_score -1
                 
-        
+                
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
@@ -136,3 +140,4 @@ class Director:
         actors = cast.get_all_actors()
         self._video_service.draw_actors(actors)
         self._video_service.flush_buffer()
+        

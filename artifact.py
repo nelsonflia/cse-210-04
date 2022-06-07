@@ -28,3 +28,4 @@ class Artifact(Actor):
             message (string): The given message.
         """
         self._score = score
+       
