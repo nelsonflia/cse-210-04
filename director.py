@@ -64,7 +64,7 @@ class Director:
             cast (Cast): The cast of actors.
         """
                 
-        pyray.draw_text(f'SCORE: {self._total_score}', 5,5,30,(255,180,80)) 
+        pyray.draw_text(f'SCORE: {self._total_score}', 5,5,30,(102,102,255,255)) 
         
         player = cast.get_first_actor("players")
         gems = cast.get_actors("gems")
@@ -100,7 +100,7 @@ class Director:
             if player.get_position().equals(gem.get_position()):
                 cast.remove_actor("gems", gem)
                 self._total_score = self._total_score +1 
-                print (self._total_score)
+                
                 
         for rock in rocks:
             rock.set_velocity(Point(0,1))
@@ -109,8 +109,8 @@ class Director:
             if len(rocks) < 10:
                 text = "o" 
                       
-                x = random.randint(1, 59)
-                y = random.randint(1, 20)
+                x = random.randint(1, 100)
+                y = random.randint(1, 100)
                 position = Point(x, y)
                 position = position.scale(15)
 
