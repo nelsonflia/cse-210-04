@@ -100,6 +100,8 @@ class Director:
             if player.get_position().equals(gem.get_position()):
                 cast.remove_actor("gems", gem)
                 self.total_score = self.total_score +1 
+                if self.total_score < 0:
+                    self.total_score = 0
                 
         for rock in rocks:
             rock.set_velocity(Point(0,1))
